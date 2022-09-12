@@ -1,7 +1,7 @@
 {
   "name": "law-society-of-ghana",
   "version": "0.1.0",
-  "homepage": "https://ktu.dossempire.com/",
+  "homepage": "http://dossone1.github.io/ktu",
   "private": true,
   "dependencies": {
     "@testing-library/jest-dom": "^5.16.4",

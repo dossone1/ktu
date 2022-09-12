@@ -1,24 +1,24 @@
 {
   "files": {
-    "main.css": "/static/css/main.7a713517.css",
-    "main.js": "/static/js/main.9b22d57b.js",
-    "static/js/787.cf6169dc.chunk.js": "/static/js/787.cf6169dc.chunk.js",
-    "static/media/privacy.pdf": "/static/media/privacy.221090e275017913b23e.pdf",
-    "static/media/terms.pdf": "/static/media/terms.521a346a66f840fea956.pdf",
-    "static/media/Lexend-VariableFont_wght.ttf": "/static/media/Lexend-VariableFont_wght.ca595aeaae636593c5fe.ttf",
-    "static/media/login-pic.jpeg": "/static/media/login-pic.45e6516f23096d7140a7.jpeg",
-    "static/media/coverimg.jpeg": "/static/media/coverimg.b8d0938a72d751c53253.jpeg",
-    "service-worker.js": "/service-worker.js",
-    "static/media/logo-circular.png": "/static/media/logo-circular.0b41c9e4d7a2ededbfb1.png",
-    "static/media/ktu.jpeg": "/static/media/ktu.350bab949858aafedbc2.jpeg",
-    "static/media/cover.svg": "/static/media/cover.c0704933a99fe91cd1d1acdfdeb714e4.svg",
-    "index.html": "/index.html",
-    "main.7a713517.css.map": "/static/css/main.7a713517.css.map",
-    "main.9b22d57b.js.map": "/static/js/main.9b22d57b.js.map",
-    "787.cf6169dc.chunk.js.map": "/static/js/787.cf6169dc.chunk.js.map"
+    "main.css": "/ktu/static/css/main.1f4f3796.css",
+    "main.js": "/ktu/static/js/main.183d26db.js",
+    "static/js/787.cf6169dc.chunk.js": "/ktu/static/js/787.cf6169dc.chunk.js",
+    "static/media/privacy.pdf": "/ktu/static/media/privacy.221090e275017913b23e.pdf",
+    "static/media/terms.pdf": "/ktu/static/media/terms.521a346a66f840fea956.pdf",
+    "static/media/Lexend-VariableFont_wght.ttf": "/ktu/static/media/Lexend-VariableFont_wght.ca595aeaae636593c5fe.ttf",
+    "static/media/login-pic.jpeg": "/ktu/static/media/login-pic.45e6516f23096d7140a7.jpeg",
+    "static/media/coverimg.jpeg": "/ktu/static/media/coverimg.b8d0938a72d751c53253.jpeg",
+    "service-worker.js": "/ktu/service-worker.js",
+    "static/media/logo-circular.png": "/ktu/static/media/logo-circular.0b41c9e4d7a2ededbfb1.png",
+    "static/media/ktu.jpeg": "/ktu/static/media/ktu.350bab949858aafedbc2.jpeg",
+    "static/media/cover.svg": "/ktu/static/media/cover.c0704933a99fe91cd1d1acdfdeb714e4.svg",
+    "index.html": "/ktu/index.html",
+    "main.1f4f3796.css.map": "/ktu/static/css/main.1f4f3796.css.map",
+    "main.183d26db.js.map": "/ktu/static/js/main.183d26db.js.map",
+    "787.cf6169dc.chunk.js.map": "/ktu/static/js/787.cf6169dc.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.7a713517.css",
-    "static/js/main.9b22d57b.js"
+    "static/css/main.1f4f3796.css",
+    "static/js/main.183d26db.js"
   ]
 }
