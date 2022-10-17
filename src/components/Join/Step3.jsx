@@ -2,13 +2,14 @@ import React, { useRef, useState } from "react";
 import { PropagateLoader } from "react-spinners";
 import { colors } from "../../utils/colors";
 import { AccessForm, FormInput } from "../styles/Access";
-import { GlobalButton } from "../styles/Global";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import validator from "validator";
 import { useExternalAPI } from "../../hooks/useExternalAPI";
 import { useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+import { Form,Button } from "react-bootstrap";
+import { Show } from "../../utils/service";
+import { useAuth } from "../../context/AuthProvider";
 
 const Step3 = ({ setEmail, setStep, userInfo }) => {
   const [loading, setLoading] = useState(false);
@@ -17,10 +18,15 @@ const Step3 = ({ setEmail, setStep, userInfo }) => {
   const form = useRef();
   const { addPendingAccount, loginUser } = useExternalAPI();
   const [meta, setMeta] = useState("");
-
+  const { navigate } = useAuth();
   // useEffect(() => {
   //   getIP();
   // }, []);
+  const handleSubmit = (event) => {
+    event.preventDefault();
+   Show.Success("Signup request initiated successfully. You will be contacted for further details to complete the process");
+   navigate("/");
+  }
 
   const getIP = async () => {
     const res = await axios.get("https://geolocation-db.com/json/");
@@ -48,18 +54,6 @@ const Step3 = ({ setEmail, setStep, userInfo }) => {
       setLoading(false);
       return;
     }
-    
-    // console.log("All info: ", userInfo);
-    // setLoading(false);
-    //   return;
-
-    // setTimeout(() => {
-    //   setLoading(false);
-    //   setEmail(e.target[1].value);
-    //   setStep(4);
-    //   console.log("Form data: ", e);
-    // }, 2000);
-
     await getIP()
       .then(async (meta) => {
         const request = await addPendingAccount({
@@ -71,21 +65,7 @@ const Step3 = ({ setEmail, setStep, userInfo }) => {
           setError("Account already exist, login.");
         }
         if (request?.success === true) {
-          // const login = await loginUser({
-          //   emailaddress: userInfo.emailaddress,
-          //   password: userInfo.password,
-          //   meta: {
-          //     ipaddress: meta.data?.IPv4,
-          //     useragent: navigator.userAgent,
-          //   },
-          // });
-
-          // // if (login?.success === true) {
-          // //   const expire = new Date(new Date().getTime() + 10 * 60 * 1000);
-          // //   Cookies.set("temporaryuser", login.data?.userpaymentdata, {
-          // //     expires: 1,
-          // //   });
-          // // }
+      
           setStep(5);
         } else {
           setError(request?.message);
@@ -140,38 +120,18 @@ const Step3 = ({ setEmail, setStep, userInfo }) => {
         hidden={false}
         placeholder="**********"
       />
-      <p
-        style={{
-          fontSize: 12,
-          color: strong ? "#308D46" : "red",
-          marginTop: 5,
-        }}
-      >
-        {error}
-      </p>
-      <GlobalButton
-        background={colors.primary}
-        color="white"
-        border={colors.primary}
-        style={{ marginTop: 25 }}
-        //   onClick={() => setOn((on) => (on++ === 3 ? 1 : on++))}
-        type="submit"
-      >
-        {loading ? (
-          <span style={{ padding: 10, marginTop: -10, marginBottom: 7 }}>
-            <PropagateLoader color={"white"} loading={loading} size={15} />
-          </span>
-        ) : (
-          <>
+   
+   <Button      
+      onClick={handleSubmit}>
+        
             Finish{" "}
             <HiArrowNarrowRight
               size={15}
               color="white"
               style={{ marginLeft: 10 }}
             />
-          </>
-        )}
-      </GlobalButton>
+        
+      </Button>
     </AccessForm>
   );
 };

@@ -7,6 +7,7 @@ import reportWebVitals from "./reportWebVitals";
 import { BrowserRouter, HashRouter } from "react-router-dom";
 import { AuthProvider } from "./context/AuthProvider";
 import { EnvProvider } from "./context/env.context";
+import { AccessContainer } from "./components/styles/Access";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -17,8 +18,15 @@ root.render(
           <App />
         </AuthProvider>
       </EnvProvider>
-    </BrowserRouter>
+    </BrowserRouter> 
+    <p style={{ textAlign: "center", fontSize: 12, color: "gray" }}>
+       Kumasi Technical University © {new Date().getFullYear()} All rights reserved.
+      </p>
+      <p style={{ textAlign: "center", fontSize: 12, color: "gray" }}>
+        v.1.0.0
+      </p>
   </React.StrictMode>
+  
 );
 
 // If you want your app to work offline and load faster, you can change

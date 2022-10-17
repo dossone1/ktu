@@ -7,76 +7,22 @@ import {
   DataListInput,
   FormInput,
 } from "../../components/styles/Access";
-import { GlobalButton, RowDivSpace } from "../../components/styles/Global";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { useExternalAPI } from "../../hooks/useExternalAPI";
 import "../../components/styles/Customcheckbox.css";
-import { DuesCheck, DuesDot, DuesTableRow } from "../../components/styles/Dues";
 import AnimateHeight from "react-animate-height";
 import {
   DashSearchContainer,
   IconDashReceipt,
   IconDashRight,
 } from "../../components/styles/Dashboard";
-import PopupView from "../../components/General/PopupPendingView";
-import Step3 from "../../components/PendingDue/Step3";
 import { useAuth } from "../../context/AuthProvider";
 import { IoNotificationsCircleSharp } from "react-icons/io5";
+import Table from 'react-bootstrap/Table';
+import { Button } from "react-bootstrap";
 
 const InternshipRequest = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [payingList, setPayingList] = useState([
-    {
-      id: 1,
-      amount: 240,
-    },
-  ]);
-  const [total, setTotal] = useState(0);
-  const [drop, setDrop] = useState(false);
-  const [payView, setPayView] = useState(false);
-  const { user } = useAuth();
-
-  const {
-    fullregionname,
-    phonenumber,
-    region,
-    typeofuser,
-    fullchapter,
-    fullprovice,
-    fullareaofp,
-    fullchamber,
-    userpaymentdata,
-  } = user;
-
-  useEffect(() => {
-    let total = [];
-    payingList.forEach(({ amount }) => total.push(amount));
-    total = total === [] ? 0 : total.reduce((a, b) => a + b, 0);
-    setTotal(total);
-  }, [payingList]);
-
-  const exist = (id, checked, amount) => {
-    const exist = payingList.find((element) => {
-      if (element.id === id) {
-        return true;
-      }
-
-      return false;
-    });
-
-    if (exist && !checked) {
-      setPayingList((e) => e.filter((data) => data.id !== id));
-    }
-    if (!exist && checked) {
-      setPayingList((e) => [...e, { amount, id }]);
-    }
-  };
-
-  const form = useRef();
-  const fileTypes = ["JPG", "PNG"];
-
-  const request = () => {};
+  const { navigate } = useAuth();
 
   return (
     <div style={{ marginTop: 20, display: "flex" }}>
@@ -91,15 +37,9 @@ const InternshipRequest = () => {
                 padding: 5,
               }}
             >
-              <h4
-                style={{
-                  marginBottom: 10,
-                  fontSize: 14,
-                  color: colors.primary,
-                }}
-              >
-                Industry Internship Request
-              </h4>
+              <h3>
+                Industry Internship Request <Button   onClick={() => navigate("/dashboard/requestIntern")} className="float-end">Place A Request</Button>
+              </h3>
               
               
             </div>
@@ -107,56 +47,52 @@ const InternshipRequest = () => {
            
           </div>
         
-          <AccessForm
-      key={0}
-      onSubmit={(e) => (!false ? request(e) : null)}
-      ref={form}
-    >
-     Department of Institution *
-      <FormInput
-        type="text"
-        required
-        placeholder=""
-        hidden={false}
-      />
-      No. of Available Slots *
-      <FormInput
-        type="number"
-        required
-        placeholder=""
-        hidden={false}
-      />
-   
-      <GlobalButton
-            background={"green"}
-            color={"white"}
-            style={{
-              margin: 0,
-              borderRadius: 5,
-              padding: "10px 20px",
-              display: "inline",
-              marginTop: 10,
-            }}
-            type="button"
-            onClick={() => setPayView(true)}
-          >
-            {loading ? (
-              <span style={{ padding: 10, marginTop: -10, marginBottom: 7 }}>
-                <PropagateLoader color={"white"} loading={loading} size={15} />
-              </span>
-            ) : (
-              "Submit Request"
-            )}
-          </GlobalButton>
-    </AccessForm>
+          <Table striped bordered hover>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Operating Region</th>
+          <th>Branch</th>
+          <th>Operating City</th>
+          <th>Prefered Course of Study</th>
+          <th>No. of Slots</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+        <td>1</td>
+        <td>Ashanti</td>
+        <td>Manhyia</td>
+          <td>Kumasi</td>
+          <td>Bachelor of Technology in Entrepreneurship & Finance</td>
+          <td>3</td>
+          <td> <Button variant="warning">pending</Button></td>
+        </tr>
+        <tr>
+        <td>2</td>
+        <td>Ashanti</td>
+        <td>Tech Campus</td>
+          <td>Kumasi</td>
+          <td>Bachelor of Technology in Data Science</td>
+          <td>6</td>
+          <td> <Button variant="warning">pending</Button></td>
+       </tr>
+        <tr>
+        <td>3</td>
+        <td>Greater Accra</td>
+        <td>East Legon</td>
+          <td>Accra</td>
+          <td>Bachelor of Technology in Electrical/Electronic Engineering</td>
+          <td>2</td>
+          <td> <Button variant="warning">pending</Button></td>
+         </tr>
+         </tbody>
+    </Table>
 
          
         </div>
       
-      
-      <PopupView payView={payView} setPayView={setPayView}>
-        <Step3 />
-      </PopupView>
     </div>
   );
 };

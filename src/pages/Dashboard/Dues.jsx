@@ -2,97 +2,43 @@ import React, { useEffect, useRef, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import { PropagateLoader } from "react-spinners";
 import { colors } from "../../utils/colors";
+import Form from 'react-bootstrap/Form';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 import {
-  AccessForm,
-  DataListInput,
-  FormInput,
+  AccessForm
 } from "../../components/styles/Access";
 import { GlobalButton, RowDivSpace } from "../../components/styles/Global";
 import { HiArrowNarrowRight } from "react-icons/hi";
 import { useExternalAPI } from "../../hooks/useExternalAPI";
 import "../../components/styles/Customcheckbox.css";
 import { DuesCheck, DuesDot, DuesTableRow } from "../../components/styles/Dues";
-import AnimateHeight from "react-animate-height";
 import {
   DashSearchContainer,
   IconDashReceipt,
   IconDashRight,
 } from "../../components/styles/Dashboard";
-import PopupView from "../../components/General/PopupPendingView";
 import Step3 from "../../components/PendingDue/Step3";
 import { useAuth } from "../../context/AuthProvider";
 import { IoNotificationsCircleSharp } from "react-icons/io5";
+import { Button } from "react-bootstrap";
+import { Show } from "../../utils/service";
 
 const Dues = () => {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
-  const [payingList, setPayingList] = useState([
-    {
-      id: 1,
-      amount: 240,
-    },
-  ]);
-  const [total, setTotal] = useState(0);
-  const [drop, setDrop] = useState(false);
-  const [payView, setPayView] = useState(false);
-  const { user } = useAuth();
 
-  const {
-    fullregionname,
-    phonenumber,
-    region,
-    typeofuser,
-    fullchapter,
-    fullprovice,
-    fullareaofp,
-    fullchamber,
-    userpaymentdata,
-  } = user;
-
-  useEffect(() => {
-    let total = [];
-    payingList.forEach(({ amount }) => total.push(amount));
-    total = total === [] ? 0 : total.reduce((a, b) => a + b, 0);
-    setTotal(total);
-  }, [payingList]);
-
-  const exist = (id, checked, amount) => {
-    const exist = payingList.find((element) => {
-      if (element.id === id) {
-        return true;
-      }
-
-      return false;
-    });
-
-    if (exist && !checked) {
-      setPayingList((e) => e.filter((data) => data.id !== id));
-    }
-    if (!exist && checked) {
-      setPayingList((e) => [...e, { amount, id }]);
-    }
-  };
-
-  const form = useRef();
-  const fileTypes = ["JPG", "PNG"];
-
-  const request = () => {};
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    Show.Success("Request successfully submitted for approval!");
+  }
 
   return (
     <div style={{ marginTop: 20, display: "flex" }}>
      
         <div style={{ flex: 1 }}>
-          <p
-            style={{
-              color: "black",
-              marginBottom: 25,
-              backgroundColor: "rgba(0, 0, 0, 0.05)",
-              borderRadius: 5,
-              padding: "5px 7px",
-            }}
-          >
+          <h3>
            Industry supervisor assignment
-          </p>
+          </h3>
           <div style={{ width: "100%" }}>
             <div
               style={{
@@ -116,107 +62,36 @@ const Dues = () => {
            
           </div>
          
-          <AccessForm
-      key={0}
-      onSubmit={(e) => (!false ? request(e) : null)}
-      ref={form}
-    >
-     Select Intern *
-      <FormInput
-        type="text"
-        required
-        placeholder=""
-        hidden={false}
-      />
-      Select Supervisor *
-      <FormInput
-        type="number"
-        required
-        placeholder=""
-        hidden={false}
-      />
-   
-      <GlobalButton
-            background={"green"}
-            color={"white"}
-            style={{
-              margin: 0,
-              borderRadius: 5,
-              padding: "10px 20px",
-              display: "inline",
-              marginTop: 10,
-            }}
-            type="button"
-            onClick={() => setPayView(true)}
-          >
-            {loading ? (
-              <span style={{ padding: 10, marginTop: -10, marginBottom: 7 }}>
-                <PropagateLoader color={"white"} loading={loading} size={15} />
-              </span>
-            ) : (
-              "Submit Request"
-            )}
-          </GlobalButton>
-    </AccessForm>
+          <Container fluid="md">
+      <Row><Col sm={8}>
+          <AccessForm>
 
+     <Form.Label>Intern *</Form.Label>
+     <Form.Select aria-label="Default select example">
+      <option>select intern</option>
+      <option value="1">Doss Amanor</option>
+      <option value="2">Justice Kwaku Adade</option>
+    </Form.Select>
+      
+      <Form.Label>Supervisor *</Form.Label>
+      <Form.Select aria-label="Default select example">
+      <option>select supervisor</option>
+      <option value="1">Yusuf Mohammed</option>
+      <option value="2">Isaac Bekoe</option>
+      <option value="3">John Kwame</option>
+      </Form.Select>
+   
+      <Button 
+        onClick={handleSubmit}
+      >
+              Submit Request
+          </Button>
+    </AccessForm>
+    </Col>
+      </Row>
+    </Container>
         </div>
       
-      <div
-        style={{
-          padding: 10,
-          border: "1px solid #E8E4E0",
-          borderRadius: 10,
-          width: 250,
-          height: "max-content",
-          marginLeft: 10,
-        }}
-      >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "space-between",
-          }}
-        >
-          <h5>Receipts</h5>
-          <IconDashReceipt />
-        </div>
-        <p style={{ fontSize: 12, marginTop: 10, marginBottom: 5 }}>
-          Payments, donations, resources etc.
-        </p>
-        <RowDivSpace
-          style={{ fontSize: 14, marginTop: 10, cursor: "pointer" }}
-          // onClick={() => direct("/dashboard/dues")}
-        >
-          Mandatory
-          <IconDashRight />
-        </RowDivSpace>
-        <RowDivSpace
-          style={{
-            fontSize: 14,
-            marginTop: 10,
-            marginBottom: 10,
-            cursor: "pointer",
-          }}
-          // onClick={() => direct("/dashboard/dues")}
-        >
-          Optional
-          <IconDashRight />
-        </RowDivSpace>
-        <a
-          style={{
-            color: colors.primary,
-            cursor: "pointer",
-            fontSize: 13,
-            fontWeight: "bold",
-            marginTop: 10,
-          }}
-        >
-          View all
-        </a>
-      </div>
-      <PopupView payView={payView} setPayView={setPayView}>
-        <Step3 />
-      </PopupView>
     </div>
   );
 };

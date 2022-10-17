@@ -30,28 +30,20 @@ const MenuButtons = ({ navOpen, page, setNavOpen }) => {
   return (
     <DashboardSelectSection isOpen={navOpen}>
       <h1 style={{ fontSize: 16, textTransform: "capitalize" }}>
-        {pagename || page}
+        Dashboard
       </h1>
       <DashSearchContainer>
         <RiSearchLine color={"black"} size={20} />
         <DashSearchInput placeholder="search.." />
       </DashSearchContainer>
-      <DropList title="Dashboard">
-        <>
+   
           <RowDivSpace
             style={{ fontSize: 14, marginTop: 20, cursor: "pointer" }}
             onClick={() => direct("/dashboard")}
           >
-            Homepage
+            Dashboard
           </RowDivSpace>
-          <RowDivSpace
-            style={{ fontSize: 14, marginTop: 20, cursor: "pointer" }}
-            onClick={() => direct("/dashboard/dev")}
-          >
-           Notifications (o)
-          </RowDivSpace>
-        </>
-      </DropList>
+        
       {/* <RowDivSpace
         style={{ fontSize: 14, marginTop: 20, cursor: "pointer" }}
         onClick={() => direct("/dashboard/profile")}
@@ -92,19 +84,19 @@ const MenuButtons = ({ navOpen, page, setNavOpen }) => {
         <>
           <RowDivSpace
             style={{ fontSize: 14, marginTop: 20, cursor: "pointer" }}
-            onClick={() => direct("/dashboard/dues")}
+            onClick={() => direct("/dashboard/assignSupervisor")}
           >
             Assign Mentor/Industry Supervisor
           </RowDivSpace>
           <RowDivSpace
             style={{ fontSize: 14, marginTop: 20, cursor: "pointer" }}
-            onClick={() => direct("/dashboard/dev")}
+            onClick={() => direct("/dashboard/contactUni")}
           >
             Contact University Supervisor
           </RowDivSpace>
           <RowDivSpace
             style={{ fontSize: 14, marginTop: 20, cursor: "pointer" }}
-            onClick={() => direct("/dashboard/dev")}
+            onClick={() => direct("/dashboard/contactInd")}
           >
             Contact Industry Liaison Office
           </RowDivSpace>
@@ -118,20 +110,20 @@ const MenuButtons = ({ navOpen, page, setNavOpen }) => {
       </DropList>
       <RowDivSpace
         style={{ fontSize: 14, marginTop: 20, cursor: "pointer" }}
-        onClick={() => direct("/dashboard/dev")}
+        onClick={() => direct("/dashboard/stdAssessment")}
       >
        Submit Student Assessment
       </RowDivSpace>
       <RowDivSpace
         style={{ fontSize: 14, marginTop: 20, cursor: "pointer" }}
-        onClick={() => direct("/dashboard/dev")}
+        onClick={() => direct("/dashboard/incidentRpt")}
       >
-       Incidence Report
+       Incident Report
         <IconDashRight />
       </RowDivSpace>
       <RowDivSpace
         style={{ fontSize: 14, marginTop: 20, cursor: "pointer" }}
-        onClick={() => direct("/dashboard/dev")}
+        onClick={() => direct("/dashboard/feedback")}
       >
        Give Feedback
       </RowDivSpace>

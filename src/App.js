@@ -10,6 +10,7 @@ import { ProtectedRoute } from "./context/ProtectedRoute";
 import ResetPassword from "./pages/ResetPassword";
 import { RedirectRoute } from "./context/RedirectRoute";
 import PedningDues from "./pages/PedningDues";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

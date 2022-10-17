@@ -32,51 +32,8 @@ const InternshipRequirement = () => {
       amount: 240,
     },
   ]);
-  const [total, setTotal] = useState(0);
-  const [drop, setDrop] = useState(false);
   const [payView, setPayView] = useState(false);
   const { user } = useAuth();
-
-  const {
-    fullregionname,
-    phonenumber,
-    region,
-    typeofuser,
-    fullchapter,
-    fullprovice,
-    fullareaofp,
-    fullchamber,
-    userpaymentdata,
-  } = user;
-
-  useEffect(() => {
-    let total = [];
-    payingList.forEach(({ amount }) => total.push(amount));
-    total = total === [] ? 0 : total.reduce((a, b) => a + b, 0);
-    setTotal(total);
-  }, [payingList]);
-
-  const exist = (id, checked, amount) => {
-    const exist = payingList.find((element) => {
-      if (element.id === id) {
-        return true;
-      }
-
-      return false;
-    });
-
-    if (exist && !checked) {
-      setPayingList((e) => e.filter((data) => data.id !== id));
-    }
-    if (!exist && checked) {
-      setPayingList((e) => [...e, { amount, id }]);
-    }
-  };
-
-  const form = useRef();
-  const fileTypes = ["JPG", "PNG"];
-
-  const request = () => {};
 
   return (
     <div style={{ marginTop: 20, display: "flex" }}>
@@ -91,15 +48,9 @@ const InternshipRequirement = () => {
                 padding: 5,
               }}
             >
-              <h4
-                style={{
-                  marginBottom: 10,
-                  fontSize: 14,
-                  color: colors.primary,
-                }}
-              >
+              <h3>
                 Industry Internship Requirements
-              </h4>
+              </h3>
               
               
             </div>
@@ -109,9 +60,6 @@ const InternshipRequirement = () => {
         </div>
       
       
-      <PopupView payView={payView} setPayView={setPayView}>
-        <Step3 />
-      </PopupView>
     </div>
   );
 };

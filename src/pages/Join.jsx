@@ -22,16 +22,12 @@ import Step3 from "../components/Join/Step3";
 import { useAuth } from "../context/AuthProvider";
 import { LandingSelector } from "../components/styles/Landing";
 import Step4 from "../components/Join/Step4";
-import Step2Lawyer from "../components/Join/Step2Lawyer";
-import Step2Student from "../components/Join/Step2Student";
-
 const Join = () => {
   const [step, setStep] = useState(0);
   const [type, setType] = useState(null);
   const [email, setEmail] = useState("");
   const [userInfo, setUserInfo] = useState(null);
   const { navigate } = useAuth();
-
 
   const renderView = ({ index, active, transitionState }) => {
     return index === 0 ? (
@@ -44,12 +40,6 @@ const Join = () => {
         setUserInfo={setUserInfo}
       />
     ) : index === 3 ? (
-      type == "Student" ? (
-        <Step2Student setStep={setStep} setUserInfo={setUserInfo} />
-      ) : (
-        <Step2Lawyer setStep={setStep} setUserInfo={setUserInfo} />
-      )
-    ) : index === 4 ? (
       <Step3
         setStep={setStep}
         userInfo={{ ...userInfo, typeofuser: type, emailaddress: email }}
@@ -86,27 +76,23 @@ const Join = () => {
           <AccessProgressNumber on={step === 0 || step === 1}>
             1
           </AccessProgressNumber>
-          Confirm email
+          Insitution Details
         </AccessProgressLevel>
         <AccessProgressLevel style={{ margin: "0 30px" }}>
           <AccessProgressNumber on={step === 2}>2</AccessProgressNumber>
-          Personal details
-        </AccessProgressLevel>
-        <AccessProgressLevel style={{ margin: "0 30px" }}>
-          <AccessProgressNumber on={step === 3}>3</AccessProgressNumber>
-          Career details
-        </AccessProgressLevel>
+         Contact Person details
+        </AccessProgressLevel>        
         <AccessProgressLevel>
-          <AccessProgressNumber on={step === 4}>4</AccessProgressNumber>
+          <AccessProgressNumber on={step === 3}>3</AccessProgressNumber>
           Set password
         </AccessProgressLevel>
       </AccessProgressContainer>
 
       <div style={{ display: "flex", width: "100%", height: 130 }}>
         <LandingSelector transition={step === 5} style={{ margin: 0 }}>
-          <AccessInfo>Start using Attachment Portal</AccessInfo>
+          <AccessInfo>Institution On-boarding Process</AccessInfo>
         </LandingSelector>
-        <LandingSelector transition={step !== 5} style={{ margin: 0 }}>
+        <LandingSelector transition={step !== 4} style={{ margin: 0 }}>
           <AccessInfo style={{ fontSize: 15 }}>
             Your information has been successfully submitted and is
             pending approval. To complete the registration process, you will be
@@ -118,17 +104,12 @@ const Join = () => {
       <AccessFormContainer>
         <ViewSliderContainer
           renderView={renderView}
-          numViews={3}
+          numViews={2}
           activeView={step}
           animateHeight
         />
       </AccessFormContainer>
-      <p style={{ textAlign: "center", fontSize: 10, color: "gray" }}>
-       Kumasi Technical University © {new Date().getFullYear()} All rights reserved.
-      </p>
-      <p style={{ textAlign: "center", fontSize: 10, color: "gray" }}>
-        v.1.0.0
-      </p>
+    
     </AccessContainer>
   );
 };

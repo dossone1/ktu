@@ -120,7 +120,25 @@ export const useExternalAPI = () => {
       return error;
     }
   };
+  const getDashboardData = async () => {
+    const config = {
+      url: `${apiServerUrl}/api/adminaction1/dashboardsummary`,
+      method: "POST",
+      withCredentials: true,
+      headers: {
+        "Content-type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+      },
+      data: {
+        id: "1",
+        statusresponse: "APPROVE",
+      },
+    };
 
+    const data = await makeRequest({ config });
+
+    return data;
+  };
   const getOTP = async (email) => {
     const config = {
       url: `${apiServerUrl}/api/auth/precheck`,
@@ -306,7 +324,7 @@ export const useExternalAPI = () => {
     const data = await makeRequest({
       config,
     });
-
+    
     return data;
   };
 
@@ -464,7 +482,22 @@ export const useExternalAPI = () => {
 
     return data;
   };
+  const fetchTransactions = async (feeData) => {
+    const config = {
+      url: `${apiServerUrl}/api/payment/gettranssummary`,
+      method: "GET",
+      withCredentials: true,
+      headers: {
+        "Content-type": "application/json",
+        "Access-Control-Allow-Credentials": true,
+      },
+      data: {}
+    };
 
+    const data = await makeRequest({ config });
+
+    return data;
+  };
   const chaneProfileData = async (userData) => {
     const config = {
       url: `${apiServerUrl}/api/auth/updateuserprofile`,
@@ -502,5 +535,7 @@ export const useExternalAPI = () => {
     changeProfile,
     checkMomoStatus,
     chaneProfileData,
+    getDashboardData,
+    fetchTransactions
   };
 };

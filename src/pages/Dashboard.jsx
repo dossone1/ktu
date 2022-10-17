@@ -32,6 +32,14 @@ import Donations from "./Dashboard/Donations";
 import { useExternalAPI } from "../hooks/useExternalAPI";
 import InternshipRequirement from "./Dashboard/InternshipRequirement";
 import VOInternship from "./Dashboard/VOInternship";
+import ContactUni from "./Dashboard/ContactUni";
+import ContactInd from "./Dashboard/ContactInd";
+import Feedback from "./Dashboard/Feedback";
+import StudentAss from "./Dashboard/StudentAss";
+import IncidentRpt from "./Dashboard/IncidentRpt";
+import AssignSupervisor from "./Dashboard/AssignSupervisor";
+import RequestInterns from "./Dashboard/RequestInterns";
+import VideoCall from "./Dashboard/VideoCall";
 
 const Dashboard = () => {
   const [navOpen, setNavOpen] = useState(false);
@@ -107,7 +115,15 @@ const Dashboard = () => {
             <Route path="internshipReq" element={<InternshipRequest />} />
             <Route path="internshipRequire" element={<InternshipRequirement />} />
             <Route path="viewInternship" element={<VOInternship />} />
-            <Route path="donations" element={<Donations />} />
+            <Route path="contactUni" element={<ContactUni />} />
+            <Route path="contactInd" element={<ContactInd />} />
+            <Route path="feedback" element={<Feedback />} />
+            <Route path="incidentRpt" element={<IncidentRpt />} />
+            <Route path="stdAssessment" element={<StudentAss />} />
+            <Route path="assignSupervisor" element={<AssignSupervisor />} />
+            <Route path="requestIntern" element={<RequestInterns />} />
+            <Route path="videoCall" element={<VideoCall />} />
+             <Route path="donations" element={<Donations />} />
             <Route path="dev" element={<Unavailable />} />
             <Route path="*" element={<DashNotFound />} />
           </Routes>

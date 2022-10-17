@@ -4,7 +4,7 @@ import axios from "axios";
 const apiServerUrl = process.env.REACT_APP_API_SERVER_URL;
 
 const dotenv = {
-  apiServerUrl: "https://glsbackend.flexibank.net",//apiServerUrl,
+  apiServerUrl: "https://api.lawsociety.org.gh",//apiServerUrl,
   axios,
 };
 

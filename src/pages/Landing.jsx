@@ -25,7 +25,7 @@ const Landing = () => {
           hide={true}
           style={{
             justifyContent: "center",
-            backgroundColor: "#D30713",
+            backgroundColor: "#1B164E",
           }}
         >
           <img

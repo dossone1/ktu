@@ -134,7 +134,7 @@ const Login = () => {
         </Link>
       </AccessNav>
       <AccessInfo style={{ marginTop: 15 }}>
-        Login to KTU Internship Portal
+        Login to KSTU Internship Portal
       </AccessInfo>
       <AccessFormContainer>
         <AccessForm
@@ -301,7 +301,7 @@ const Login = () => {
        Kumasi Technical University © {new Date().getFullYear()} All rights reserved.
       </p>
       <p style={{ textAlign: "center", fontSize: 10, color: "gray" }}>
-        v.1.1.1
+        v.1.0.0
       </p>
     </AccessContainer>
   );
